@@ -16,6 +16,15 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
       },
     });
+
+   // userFavorites.associate = function(models) {
+      //userFavorties.belongsTo(models.userInfo, {
+        //foreignKey: {
+          //allowNull: false
+        //}
+      //});
+    //};
+
     return userFavorties;
   };
   
