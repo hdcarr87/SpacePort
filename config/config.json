@@ -1,8 +1,8 @@
 {
     "development": {
       "username": "root",
-      "password": null,
-      "database": "exampledb",
+      "password": "Axlelee87!",
+      "database": "space_portdb",
       "host": "localhost",
       "dialect": "mysql"
     },
