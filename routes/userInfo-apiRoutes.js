@@ -14,8 +14,9 @@ module.exports = function(app) {
         res.json(dbuserInfo);
       });
     });
+  }
     //post create route to tie the type of user to the userInfor table.  This should also tie to the ajax calls and what types of books, news, and movies will be posted to the options display (?) page
-    app.post("/")
+    //app.post("/")
     //post update route to update the userInfo.  Should be able to update ID, type or password
 
-    //destroy route so users can delete there account.  This should clear their info on the favorites table too.  Use a join for this?
+    //destroy route so users can delete there account.  This should clear their info on the favorites table too.  Use a join for this
