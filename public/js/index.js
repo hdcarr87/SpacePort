@@ -4,31 +4,64 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+//API query and key variables
+//NASA API
+var factAPIkey = "CpOF579ndJum1XP4s6XcPnWTQHLo9faqr4hORNMH";
+var nasaFact ="https://api.nasa.gov/planetary/apod?api_key=" + factAPIkey;
+var marsQuery = "https: //api.nasa.gov/insight_weather/?api_key=" + factAPIkey + "&feedtype=json&ver=1.0";
+
+var movieQuery = "http://www.omdbapi.com/?apikey=ec0b3a6b&s=astronaut"
+
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+
+  //random fact api
+  getRandomFact: function(response) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      type: "GET",
+      url: nasaFact,
+      data: JSON.stringify(response)
     });
   },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
+
+  displayRandomFact: function(response) {
+    $("#nasa").append(`<img id="fact" src="${response.url}"><br> <h1>${response.title}</h1>`);
   },
-  deleteExample: function(id) {
+
+  getMovieList: function(response) {
     return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "GET",
+      url: nasaFact,
+      data: JSON.stringify(response)
     });
   }
 };
+
+var nasaAPI = {
+  getExamples: function() {
+    return $.ajax({
+      
+      url: nasaFact,
+      type: "GET"
+    }).then(function (response) {
+
+      console.log(response);
+      console.log(response.url);
+      console.log(response.title);
+
+      $("#nasa").append(`<img id="fact" src="${response.url}"><br> <h1>${response.title}</h1>`);
+
+    });
+  },
+};
+
+
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
