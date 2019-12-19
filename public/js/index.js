@@ -4,6 +4,12 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+//API query and key variables
+//NASA API
+var factAPIkey = "CpOF579ndJum1XP4s6XcPnWTQHLo9faqr4hORNMH";
+var nasaFact ="https://api.nasa.gov/planetary/apod?api_key=" + factAPIkey;
+var marsQuery = "https: //api.nasa.gov/insight_weather/?api_key=" + factAPIkey + "&feedtype=json&ver=1.0";
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
@@ -28,6 +34,24 @@ var API = {
       type: "DELETE"
     });
   }
+};
+
+var nasaAPI = {
+  getExamples: function() {
+    return $.ajax({
+      
+      url: nasaFact,
+      type: "GET"
+    }).then(function (response) {
+
+      console.log(response);
+      console.log(response.url);
+      console.log(response.title);
+
+      $("#nasa").append(`<img id="fact" src="${response.url}"><br> <h1>${response.title}</h1>`);
+
+    });
+  },
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
