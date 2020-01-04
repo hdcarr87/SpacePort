@@ -24,11 +24,16 @@ var API = {
       type: "GET",
       url: nasaFact,
       data: JSON.stringify(response)
-    });
-  },
+    }).then(function (response) {
 
-  displayRandomFact: function(response) {
-    $("#nasa").append(`<img id="fact" src="${response.url}"><br> <h1>${response.title}</h1>`);
+      console.log(response);
+      console.log(response.url);
+      console.log(response.title);
+
+      //appends to nasa div in index.html
+      $("#nasa").append(`<img id="fact" src="${response.url}"><br> <h1>${response.title}</h1>`);
+
+    });
   },
 
   getMovieList: function(response) {
@@ -39,11 +44,21 @@ var API = {
       type: "GET",
       url: nasaFact,
       data: JSON.stringify(response)
+    }).then(function (response) {
+
+      console.log(response);
+      console.log(response.url);
+      console.log(response.title);
+
+      //appends to movie div in index.html
+      $("#movie-list").append(`<img id="fact" src="${response.url}"><br> <h1>${response.title}</h1>`);
+
     });
   }
 };
 
 var nasaAPI = {
+  //make a function for the ajax call
   getExamples: function() {
     return $.ajax({
       
@@ -130,3 +145,7 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+
+//export module
+module.exports = js;
