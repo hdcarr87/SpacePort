@@ -89,7 +89,7 @@
                             <br/>
                             <center>
                                 <div class='row'>
-                                    <button class='col s12 btn btn-large waves-effect deep-purple lighten-0' name='btn_login' type='submit'>Login</button>
+                                    <button id = "login" class='col s12 btn btn-large waves-effect deep-purple lighten-0' name='btn_login'>Login</button>
                                 </div>
                             </center>
                         </form>
@@ -105,7 +105,26 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js" type="text/javascript"></script>
         <script crossorigin="anonymous" src="https://kit.fontawesome.com/8ce1e63b1f.js"></script>
-
+        
+        <script>
+          var user = JSON.parse(localStorage.getItem("user"))
+          if (user.email !==""){
+            $("#email").val(user.email)
+            $("#password").val(user.pass)
+          }
+          $("#login").on("click", function(){
+            event.preventDefault()
+          
+            console.log("click")
+            user = {
+              email : $("#email").val(),
+              pass : $("#password").val()
+            }
+            console.log(user)
+            localStorage.setItem("user", JSON.stringify(user) )
+            window.location = "/home"
+          })
+        </script>
 
 </body>
 </html>
