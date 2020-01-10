@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var userFavorties = sequelize.define("userFavorites", {
+    var userFavorites = sequelize.define("userFavorites", {
       //user ID that user entered on homepage (same userID as the userInfo table)
       userID: {
         type: DataTypes.STRING,
@@ -18,13 +18,13 @@ module.exports = function(sequelize, DataTypes) {
     });
 
    // userFavorites.associate = function(models) {
-      //userFavorties.belongsTo(models.userInfo, {
+      //userFavorites.belongsTo(models.userInfo, {
         //foreignKey: {
           //allowNull: false
         //}
       //});
     //};
 
-    return userFavorties;
+    return userFavorites;
   };
   
