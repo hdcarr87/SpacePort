@@ -162,11 +162,14 @@ $(document).on("click", "#book-astronaut", function(){
 
 $(document).on("click", ".fav", function(){
   console.log("fav button was clicked")
-  var newFav = $(this).attr("data");
+  var newFav = {
+    Type: "movie",
+    Data: $(this).attr("data")
+  }
   console.log(typeof newFav)
-  $.post("/api/myport", newFav, function(data){
+  $.post("/api/myport/movie", newFav, function(data){
     console.log("post request complete");
 console.log(data)
-
+    window.location = "/myport"
   })
 })

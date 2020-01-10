@@ -2,14 +2,14 @@ var db = require("../models");
 
 module.exports = function(app) {
 //route to get userID currently in use
-    app.post("/api/userID", function(req, res) {
-        db.userFavorites.create(req.body).then(function(dbuserFavorites){
-            res.json(dbuserFavorites);
-        });
-    });    
+    // app.post("/api/userID", function(req, res) {
+    //     db.userFavorites.create(req.body).then(function(dbuserFavorites){
+    //         res.json(dbuserFavorites);
+    //     });
+    // });    
 
-//post create route for when a new favorite is added
-    app.post("/api/myport", function(req, res) {
+//post create route for when a new favorite movie is added
+    app.post("/api/myport/movie", function(req, res) {
        console.log(typeof req.body)
        console.log(typeof JSON.stringify(req.body))
             console.log("myPort route on server")
@@ -20,12 +20,12 @@ module.exports = function(app) {
             var favName = keys[0];
 
             console.log(favName);
-//  db.userFavorites.create(req.body).then(function(dbuserFavorites){
-            res.json("movie favorite from server");
-        // });
+  db.userFavorites.create(req.body).then(function(dbuserFavorites){
+            res.json(dbuserFavorites);
+         });
     });
 
-//post add movie favorite
+
 app.post("/api/favorites/:id", function (req, res) {
     db.userFavorites.create(req.body).then(function(dbuserFavorites){
         res.json(dbuserFavorites)
@@ -44,13 +44,13 @@ app.post("/api/favorites/:id", function (req, res) {
         });
     });
 //join route with destroy on the userInfo routes so that favorites for this userID is deleted if the user deletes account.
-    app.delete("/api/favorites/userID", function(req, res) {
-        db.userFavorites.destroy({
-            where: {
-                id: req.body.userID
-            }
-        }).then(function(dbuserFavorites) {
-            res.json(dbuserFavorites);
-        });
-    });
+    // app.delete("/api/favorites/userID", function(req, res) {
+    //     db.userFavorites.destroy({
+    //         where: {
+    //             id: req.body.email
+    //         }
+    //     }).then(function(dbuserFavorites) {
+    //         res.json(dbuserFavorites);
+    //     });
+    // });
 }
