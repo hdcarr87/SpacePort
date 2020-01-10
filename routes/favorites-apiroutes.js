@@ -16,23 +16,23 @@ module.exports = function(app) {
             console.log(req.body);
             //array for favorite name
 
-app.get("/api/myport/movie/:id", function(req, res){
+//get route for getting favorites for the user
+app.get("/api/myport/favorites/:id", function(req, res){
+    console.log("favorites get request")
     db.userFavorites.findAll({
         where: {
             userID: req.params.id
         }
     }).then(function(favorites){
         res.json(favorites)
+        console.log(favorites)
     })
 })
-        
-
-           
+          
  db.userFavorites.create(req.body).then(function(dbuserFavorites){
             res.json("movie favorite from server");
         });
     });
-
 
 //post add movie favorite
 app.post("/api/favorites/:id", function (req, res) {
@@ -40,7 +40,6 @@ app.post("/api/favorites/:id", function (req, res) {
         res.json(dbuserFavorites)
     });
 });
-
 
 //delete route for when a favorite is removed
     app.delete("/api/favorites/:id", function(req, res) {

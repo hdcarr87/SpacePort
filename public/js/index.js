@@ -292,6 +292,5 @@ $(document).on("click", ".fav", function(){
 console.log(data)
   })
 
-
-  
 })
+
