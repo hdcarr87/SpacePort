@@ -294,3 +294,9 @@ console.log(data)
 
 })
 
+function renderFavorites(){
+$.get("/api/myport:id", function(req, res){
+  res.sendFile()
+})
+}
+
