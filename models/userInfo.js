@@ -8,11 +8,7 @@ module.exports = function(sequelize, DataTypes) {
           len: [6]
         }
       },
-      //Student, teacher, or parent type
-      userType: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
+    
       //password that the user chooses
       password: {
         type: DataTypes.STRING,

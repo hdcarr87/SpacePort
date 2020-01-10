@@ -3,6 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   //post the user ID from the text box on the homepage that the user creates
     app.post("/api/email", function(req, res) {
+      console.log(req.body)
         db.userInfo.create(req.body).then(function(dbuserInfo){
             res.json(dbuserInfo);
         });
