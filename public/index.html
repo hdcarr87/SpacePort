@@ -125,15 +125,16 @@
             console.log("click")
             user = {
               email : $("#email").val(),
-              pass : $("#password").val()
+              password : $("#password").val()
             }
             console.log(user)
             localStorage.setItem("user", JSON.stringify(user) )
-            function login(user) {
-                $.post("/api/email", user, function(){
-                    window.location = "/home"
-                })
-            };
+            
+             $.post("/api/email", user, function(data){
+                console.log(data)
+                window.location = "/home"
+            })
+            
 
           })
 
