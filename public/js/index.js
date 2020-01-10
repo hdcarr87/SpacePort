@@ -188,7 +188,7 @@ getBookMarsList: function(response) {
     `);
   }
 });
-},
+},  
 
 getBookGalaxyList: function(response) {
   return $.ajax({
@@ -205,7 +205,7 @@ getBookGalaxyList: function(response) {
     url: galaxyBooks,
   }).then(function (response) {
     for(let i = 0; i < 3; i++ ){
-    let r = response.items[0];
+    let r = response.items[0];   
     r = response.items[Math.floor(Math.random() * response.items.length)];
     $("#book-list").
     prepend(`
