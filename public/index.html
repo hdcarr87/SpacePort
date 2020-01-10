@@ -129,8 +129,14 @@
             }
             console.log(user)
             localStorage.setItem("user", JSON.stringify(user) )
-            window.location = "/home"
+            function login(user) {
+                $.post("/api/email", user, function(){
+                    window.location = "/home"
+                })
+            };
+
           })
+
         </script>
 
 </body>

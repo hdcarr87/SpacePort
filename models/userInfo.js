@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var userInfo = sequelize.define("userInfo", {
       //ID that the user chooses, must be at least 6 characters
-      userID: {
+      email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -22,6 +22,13 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     });
+
+    userInfo.associate = function(models) {
+      userInfo.hasMany(models.userFavorites, {
+        onDelete: "cascade"
+      });
+    };
+    
     return userInfo;
   };
   
