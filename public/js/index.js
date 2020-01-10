@@ -34,21 +34,15 @@ var API = {
   //random fact and picture call
   getRandomFact: function(response) {
     return $.ajax({
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: {"Content-Type": "application/json",},
       type: "GET",
       url: nasaFact,
       data: JSON.stringify(response)
     }).then(function (response) {
-
-      //appends to nasa div in index.html
-      $("#nasa").append(`<img id="fact" width="200px" src="${response.url}"><br> <h1>${response.title}</h1><br>${response.explanation}`);
-
+      $("#nasa").append(`<img id="fact" width="600px" src="${response.url}"><br> <h1>${response.title}</h1><br>${response.explanation}`);
     });
   },
 
-  //generate random list
   getMovieAstronautList: function(response) {
     return $.ajax({
       headers: {
@@ -62,17 +56,11 @@ var API = {
       },
       type: "GET",
       url: astronautMovies,
-      // data: JSON.stringify(response)
     }).then(function (response) {
-
       for(let i = 0; i < 3; i++ ){
-
       let r = response.Search[0];
       r = response.Search[Math.floor(Math.random() * response.Search.length)];
-
-      //appends to movie div in index.html
       $("#movie-list").append(`<img src="${r.Poster}"><br> <h1>${r.Title}</h1><br><button class="fav" data="${r.Title}">add to favorites</button>`);
-
     }
   });
   },
@@ -90,23 +78,16 @@ var API = {
       },
       type: "GET",
       url: spaceMovies,
-      // data: JSON.stringify(response)
     }).then(function (response) {
-
       for(let i = 0; i < 3; i++ ){
-
       let r = response.Search[0];
       r = response.Search[Math.floor(Math.random() * response.Search.length)];
-
-      //appends to movie div in index.html
       $("#movie-list").append(`<img src="${r.Poster}"><br> <h1>${r.Title}</h1>`);
-
     }
   });
   },
 
-  //generate random list
-  getBookList: function(response) {
+  getBookPlanetList: function(response) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json",
@@ -119,20 +100,11 @@ var API = {
       },
       type: "GET",
       url: planetBooks,
-      // data: JSON.stringify(response)
     }).then(function (response) {
-
-      console.log(response)
-      console.log(response.items[0].volumeInfo.title)
-
       for(let i = 0; i < 3; i++ ){
-
       let r = response.items[0];
       r = response.items[Math.floor(Math.random() * response.items.length)];
-
-      //appends to movie div in index.html
       $("#book-list").append(`<img width="150px" src="${r.volumeInfo.imageLinks.thumbnail}"><br> <h1>${r.volumeInfo.title}</h1><br>${r.volumeInfo.description}`);
-
     }
   });
 },
@@ -152,15 +124,49 @@ $(document).on("click", "#movie-space", function(){
   API.getMovieSpaceList();
 })
 
+$(document).on("click", "#movie-planet", function(){
+  console.log("space was clicked!");
+  event.preventDefault();
+  API.getMoviePlanetList();
+})
+
+$(document).on("click", "#movie-mars", function(){
+  console.log("space was clicked!");
+  event.preventDefault();
+  API.getMovieMarsList();
+})
+
 $(document).on("click", "#book-planet", function(){
   console.log("planet book was clicked!");
   event.preventDefault();
-  API.getBookList();
+  API.getBookPlanetList();
 })
 
+$(document).on("click", "#book-mars", function(){
+  console.log("planet book was clicked!");
+  event.preventDefault();
+  API.getBookMarsList();
+})
+
+$(document).on("click", "#book-galaxy", function(){
+  console.log("planet book was clicked!");
+  event.preventDefault();
+  API.getBookGalaxyList();
+})
+
+$(document).on("click", "#book-astronaut", function(){
+  console.log("planet book was clicked!");
+  event.preventDefault();
+  API.getBookAstronautList();
+})
 
 $(document).on("click", ".fav", function(){
   console.log("fav button was clicked")
-  var movieFav = $(this).attr("data");
-  console.log(movieFav)
+  var newFav = $(this).attr("data");
+  console.log(typeof newFav)
+  $.post("/api/myport", newFav, function(data){
+    console.log("post request complete");
+console.log(data)
+
+  })
 })
