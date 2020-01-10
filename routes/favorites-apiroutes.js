@@ -15,6 +15,13 @@ module.exports = function(app) {
         });
     });
 
+//post add movie favorite
+app.post("/api/favorites/:id", function (req, res) {
+    db.userFavorites.create(req.body).then(function(dbuserFavorites){
+        res.json(dbuserFavorites)
+    });
+});
+
 
 //delete route for when a favorite is removed
     app.delete("/api/favorites/:id", function(req, res) {
@@ -27,7 +34,7 @@ module.exports = function(app) {
         });
     });
 //join route with destroy on the userInfo routes so that favorites for this userID is deleted if the user deletes account.
-    app.delete("/api/favorties/userID", function(req, res) {
+    app.delete("/api/favorites/userID", function(req, res) {
         db.userFavorites.destroy({
             where: {
                 id: req.body.userID

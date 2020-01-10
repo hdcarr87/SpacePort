@@ -49,7 +49,7 @@ var API = {
   },
 
   //generate random list
-  getMovieList: function(response) {
+  getMovieAstronautList: function(response) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json",
@@ -62,6 +62,34 @@ var API = {
       },
       type: "GET",
       url: astronautMovies,
+      // data: JSON.stringify(response)
+    }).then(function (response) {
+
+      for(let i = 0; i < 3; i++ ){
+
+      let r = response.Search[0];
+      r = response.Search[Math.floor(Math.random() * response.Search.length)];
+
+      //appends to movie div in index.html
+      $("#movie-list").append(`<img src="${r.Poster}"><br> <h1>${r.Title}</h1><br><button class="fav" data="${r.Title}">add to favorites</button>`);
+
+    }
+  });
+  },
+
+  getMovieSpaceList: function(response) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3000/, *",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Max-Age": "86400",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT,TRACE",
+        "Access-Control-Allow-Headers": "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
+      },
+      type: "GET",
+      url: spaceMovies,
       // data: JSON.stringify(response)
     }).then(function (response) {
 
@@ -112,10 +140,27 @@ var API = {
 
 API.getRandomFact();
 
-API.getBookList();
-
-$(document).on("click", "#astronaut", function(){
+$(document).on("click", "#movie-astronaut", function(){
   console.log("astronaut was clicked!");
   event.preventDefault();
-  API.getMovieList();
+  API.getMovieAstronautList();
+})
+
+$(document).on("click", "#movie-space", function(){
+  console.log("space was clicked!");
+  event.preventDefault();
+  API.getMovieSpaceList();
+})
+
+$(document).on("click", "#book-planet", function(){
+  console.log("planet book was clicked!");
+  event.preventDefault();
+  API.getBookList();
+})
+
+
+$(document).on("click", ".fav", function(){
+  console.log("fav button was clicked")
+  var movieFav = $(this).attr("data");
+  console.log(movieFav)
 })
