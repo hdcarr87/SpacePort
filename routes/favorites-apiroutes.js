@@ -17,7 +17,7 @@ module.exports = function(app) {
             //array for favorite name
 
 //get route for getting favorites for the user
-app.get("/api/myport/favorites/:id", function(req, res){
+app.get("/api/myport", function(req, res){
     console.log("favorites get request")
     db.userFavorites.findAll({
         where: {
@@ -28,7 +28,7 @@ app.get("/api/myport/favorites/:id", function(req, res){
         console.log(favorites)
     })
 })
-          
+
  db.userFavorites.create(req.body).then(function(dbuserFavorites){
             res.json("movie favorite from server");
         });

@@ -291,12 +291,12 @@ $(document).on("click", ".fav", function(){
     console.log("post request complete");
 console.log(data)
   })
-
 })
 
-function renderFavorites(){
-$.get("/api/myport:id", function(req, res){
-  res.sendFile()
+$(document).on("click", "#view-favs", function(){
+  $.get("/api/myport/", function(data){
+    // console.log(data)
+    console.log("myport get request complete")
+  })
 })
-}
 
