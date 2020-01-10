@@ -8,7 +8,23 @@ module.exports = function(app) {
             res.json(dbuserInfo);
         });
       });
+
+      app.post("/api/login", function(req, res){
+        console.log(req.body)
+        db.userInfo.findAll({
+          where : {
+            email: req.body.email, 
+            password: req.body.password
+          }
+        }
+         ).then(function(userLogin){
+          res.json(userLogin)
+        })
+      })   
+
     }
+
+
     //post create route to save the password into the database for each userID
     
     //post create route to tie the type of user to the userInfor table.  This should also tie to the ajax calls and what types of books, news, and movies will be posted to the options display (?) page

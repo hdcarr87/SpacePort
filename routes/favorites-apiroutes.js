@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
 //route to get userID currently in use
     app.post("/api/userID", function(req, res) {
-        db.userFavorites.create(req.body).then(function(dbuserFavorites){
+        db.userInfo.create(req.body).then(function(dbuserFavorites){
             res.json(dbuserFavorites);
         });
     });    
@@ -15,15 +15,24 @@ module.exports = function(app) {
             console.log("myPort route on server")
             console.log(req.body);
             //array for favorite name
-            var keys = Object.keys(req.body);
-            console.log(keys);
-            var favName = keys[0];
 
-            console.log(favName);
-//  db.userFavorites.create(req.body).then(function(dbuserFavorites){
+app.get("/api/myport/movie/:id", function(req, res){
+    db.userFavorites.findAll({
+        where: {
+            userID: req.params.id
+        }
+    }).then(function(favorites){
+        res.json(favorites)
+    })
+})
+        
+
+           
+ db.userFavorites.create(req.body).then(function(dbuserFavorites){
             res.json("movie favorite from server");
-        // });
+        });
     });
+
 
 //post add movie favorite
 app.post("/api/favorites/:id", function (req, res) {

@@ -278,11 +278,20 @@ $(document).on("click", "#book-astronaut", function(){
 //////////add favorites button - post to myPort
 $(document).on("click", ".fav", function(){
   console.log("fav button was clicked")
-  var newFav = $(this).attr("data");
+  var newFav = {
+    Data: $(this).attr("data"),
+    userID: "2",
+    Type: "movie",
+    userInfoId: 1,
+  } 
   console.log(typeof newFav)
   console.log(newFav)
-  $.post("/api/myport", newFav, function(data){
+
+  $.post("/api/myport/", newFav, function(data){
     console.log("post request complete");
 console.log(data)
   })
+
+
+  
 })

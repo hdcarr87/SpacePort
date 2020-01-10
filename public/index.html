@@ -100,7 +100,10 @@
                             <br/>
                             <center>
                                 <div class='row'>
-                                    <button id="login" class='col s12 btn btn-large waves-effect deep-purple lighten-0' name='btn_login'>Login</button>
+                                    <button id="signUp" class='col s12 btn btn-large waves-effect deep-purple lighten-0' name='btn_login'>Sign Up</button>
+                                    <Br>
+                                        <button id="login" class='col s12 btn btn-large waves-effect deep-purple lighten-0' name='btn_login'>Log In</button>    
+
                                 </div>
                             </center>
                         </form>
@@ -127,12 +130,17 @@
         
         <script>
           var user = JSON.parse(localStorage.getItem("user"))
+          user = {
+              email : $("#email").val(),
+              password : $("#password").val()
+            }
+
           console.log(user)
           if (user && user.email !==""){
             $("#email").val(user.email)
             $("#password").val(user.pass)
           }
-          $("#login").on("click", function(){
+          $("#signUp").on("click", function(){
             event.preventDefault()
           
             console.log("click")
@@ -146,6 +154,19 @@
              $.post("/api/email", user, function(data){
                 console.log(data)
                 window.location = "/home"
+            })
+          })
+
+          $("#login").on("click", function(){
+              event.preventDefault()
+              user = {
+              email : $("#email").val(),
+              password : $("#password").val()
+            }
+            console.log("login button clicked");
+            console.log(user)
+            $.post("/api/login", user, function(data){
+                    console.log(data)
             })
           })
 
