@@ -9,7 +9,7 @@
     "test": {
       "username": "root",
       "password": "root",
-      "database": "space_portdb",
+      "database": "testdb",
       "host": "localhost",
       "dialect": "mysql",
       "logging": false
