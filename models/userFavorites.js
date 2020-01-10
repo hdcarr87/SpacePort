@@ -17,13 +17,13 @@ module.exports = function(sequelize, DataTypes) {
       },
     });
 
-   // userFavorites.associate = function(models) {
-      //userFavorites.belongsTo(models.userInfo, {
-        //foreignKey: {
-          //allowNull: false
-        //}
-      //});
-    //};
+    userFavorites.associate = function(models) {
+      userFavorites.belongsTo(models.userInfo, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };
 
     return userFavorites;
   };

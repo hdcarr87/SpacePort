@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-      "password": "root",
+      "password": "Axlelee87!",
       "database": "space_portdb",
       "host": "localhost",
       "dialect": "mysql"
@@ -9,7 +9,7 @@
     "test": {
       "username": "root",
       "password": "root",
-      "database": "space_portdb",
+      "database": "testdb",
       "host": "localhost",
       "dialect": "mysql",
       "logging": false
