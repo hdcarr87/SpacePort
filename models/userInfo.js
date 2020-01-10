@@ -19,11 +19,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    userInfo.associate = function(models) {
-      userInfo.hasMany(models.userFavorites, {
-        onDelete: "cascade"
-      });
-    };
+    // userInfo.associate = function(models) {
+    //   userInfo.hasMany(models.userFavorites, {
+    //     onDelete: "cascade"
+    //   });
+    // };
     
     return userInfo;
   };

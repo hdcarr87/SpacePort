@@ -11,7 +11,7 @@ module.exports = function(app) {
 //post create route for when a new favorite is added
     app.post("/api/myport", function(req, res) {
     //    console.log(typeof req.body)
-    //    console.log(typeof JSON.stringify(req.body))
+    //    console.log(typeof JSON.stringify(req.body))   
             console.log("myPort route on server")
             console.log(req.body);
             //array for favorite name
@@ -31,10 +31,11 @@ app.get("/api/myport", function(req, res){
 
  db.userFavorites.create(req.body).then(function(dbuserFavorites){
             res.json("movie favorite from server");
+   res.json(dbuserFavorites);
         });
     });
 
-//post add movie favorite
+
 app.post("/api/favorites/:id", function (req, res) {
     db.userFavorites.create(req.body).then(function(dbuserFavorites){
         res.json(dbuserFavorites)
@@ -52,13 +53,13 @@ app.post("/api/favorites/:id", function (req, res) {
         });
     });
 //join route with destroy on the userInfo routes so that favorites for this userID is deleted if the user deletes account.
-    app.delete("/api/favorites/userID", function(req, res) {
-        db.userFavorites.destroy({
-            where: {
-                id: req.body.userID
-            }
-        }).then(function(dbuserFavorites) {
-            res.json(dbuserFavorites);
-        });
-    });
+    // app.delete("/api/favorites/userID", function(req, res) {
+    //     db.userFavorites.destroy({
+    //         where: {
+    //             id: req.body.email
+    //         }
+    //     }).then(function(dbuserFavorites) {
+    //         res.json(dbuserFavorites);
+    //     });
+    // });
 }
