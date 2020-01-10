@@ -30,6 +30,9 @@
                 background-image: url(https://i.pinimg.com/originals/83/ca/d5/83cad58240e7e877efee1503965a05fe.gif);
                 font-family: 'Press Start 2P', cursive;
               }
+              .white-text {
+                 text-align: center;
+              }
           
               main {
                 flex: 1 0 auto;
@@ -50,8 +53,12 @@
                 box-shadow: none;
               }
               
-
-
+              nav {
+                background-color: #673ab7 !important;
+              }
+              .checked {
+                color: orange;
+                        }
             </style>
           </head>
           
@@ -63,6 +70,8 @@
                 <div class="section"></div>
           
             </main>
+            
+
            
             <section>
                       <div class="row">
@@ -73,8 +82,9 @@
                                   <div class="card-image">
                                       <img src="https://placehold.it/320x240">
                                       <span class="card-title">Card Title</span>
+                                      <button id="book-planet">planet</button>
                                   </div>
-                                  <div class="card-content">
+                                  <div class="card-content" id="book-list">
                                       <p>I am a very simple card. I am good at containing small bits of information.
                                       I am convenient because I require little markup to use effectively.</p>
                                   </div>
@@ -241,7 +251,7 @@
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
             <script src="https://kit.fontawesome.com/8ce1e63b1f.js" crossorigin="anonymous"></script>
-          
+            <script src="js/index.js"></script>
           
           
 
