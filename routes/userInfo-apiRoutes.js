@@ -9,11 +9,6 @@ module.exports = function(app) {
       });
 
     //post create route to save the password into the database for each userID
-    app.post("/api/password", function(req, res) {
-      db.userInfo.create(req.body).then(function(dbuserInfo) {
-        res.json(dbuserInfo);
-      });
-    });
   }
     //post create route to tie the type of user to the userInfor table.  This should also tie to the ajax calls and what types of books, news, and movies will be posted to the options display (?) page
     //app.post("/")

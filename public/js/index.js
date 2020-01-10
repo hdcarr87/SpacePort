@@ -9,6 +9,18 @@ console.log("js here");
 //   console.log(await res.json())
 // })();
 
+$(document).on("click", "#login", function(){
+  console.log("you loged in");
+  event.preventDefault();
+  $.post("/api/userId", {
+    email: email,
+    password: password
+  })
+  .then(function(data) {
+    
+  });
+}
+
 var movieSearch = $('#search-input').val();
 
 //API query and key variables
