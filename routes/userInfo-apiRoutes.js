@@ -19,8 +19,8 @@ module.exports = function(app) {
         }
          ).then(function(userLogin){
           res.json(userLogin)
-        })
-      })   
+        });
+      });
 
     }
 

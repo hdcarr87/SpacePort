@@ -59,7 +59,7 @@ var API = {
       prepend(`
       <div class="api-item">
       <h3>${r.Title}</h3>
-      <br><button class="fav" data="${r.Title}">add to favorites</button>
+      <br><button class="favmovies" data="${r.Title}">add to favorites</button>
       <br><img style="width:200px; float:none"src="${r.Poster}">
       </div>
       <br>
@@ -89,7 +89,7 @@ var API = {
       prepend(`
       <div class="api-item">
       <h3>${r.Title}</h3>
-      <br><button class="fav" data="${r.Title}">add to favorites</button>
+      <br><button class="favmovies" data="${r.Title}">add to favorites</button>
       <br><img style="width:200px; float:none"src="${r.Poster}">
       </div>
       <br>
@@ -119,7 +119,7 @@ var API = {
       prepend(`
       <div class="api-item">
       <h3>${r.Title}</h3>
-      <br><button class="fav" data="${r.Title}">add to favorites</button>
+      <br><button class="favmovies" data="${r.Title}">add to favorites</button>
       <br><img style="width:200px; float:none"src="${r.Poster}">
       </div>
       <br>
@@ -149,7 +149,7 @@ var API = {
       prepend(`
       <div class="api-item">
       <h3>${r.volumeInfo.title}</h3>
-      <br><button class="fav" data="${r.volumeInfo.title}">add to favorites</button>
+      <br><button class="favbooks" data="${r.volumeInfo.title}">add to favorites</button>
       <br><img class="thumbnail" src="${r.volumeInfo.imageLinks.thumbnail}">
       <br> ${r.volumeInfo.description}
       </div>
@@ -180,7 +180,7 @@ getBookMarsList: function(response) {
     prepend(`
     <div class="api-item">
     <h3>${r.volumeInfo.title}</h3>
-    <br><button class="fav" data="${r.volumeInfo.title}">add to favorites</button>
+    <br><button class="favbooks" data="${r.volumeInfo.title}">add to favorites</button>
     <br><img class="thumbnail" src="${r.volumeInfo.imageLinks.thumbnail}">
     <br> ${r.volumeInfo.description}
     </div>
@@ -211,7 +211,7 @@ getBookGalaxyList: function(response) {
     prepend(`
     <div class="api-item">
     <h3>${r.volumeInfo.title}</h3>
-    <br><button class="fav" data="${r.volumeInfo.title}">add to favorites</button>
+    <br><button class="favbooks" data="${r.volumeInfo.title}">add to favorites</button>
     <br><img class="thumbnail" src="${r.volumeInfo.imageLinks.thumbnail}">
     <br> ${r.volumeInfo.description}
     </div>
@@ -276,22 +276,46 @@ $(document).on("click", "#book-astronaut", function(){
 })
 
 //////////add favorites button - post to myPort
-$(document).on("click", ".fav", function(){
+$(document).on("click", ".favmovies", function(){
   console.log("fav button was clicked")
-  var newFav = {
+  var newFavmovies = {
     Data: $(this).attr("data"),
-    userID: "2",
+    //userID: "2",
     Type: "movie",
-    userInfoId: 1,
+    //userInfoId: 1,
   } 
-  console.log(typeof newFav)
-  console.log(newFav)
+  console.log(typeof newFavmovies)
+  console.log(newFavmovies)
 
-  $.post("/api/myport/", newFav, function(data){
+  $.post("/api/myport/favmovies", newFavmovies, function(data){
     console.log("post request complete");
 console.log(data)
   })
+  window.location = "/myport"
+})
 
+function renderFavorites(){
+$.get("/api/myport:id", function(req, res){
+  res.sendFile()
+})
+}
+
+$(document).on("click", ".favbooks", function(){
+  console.log("fav button was clicked")
+  var newFavbooks = {
+    Data: $(this).attr("data"),
+    //userID: "2",
+    Type: "books",
+    //userInfoId: 1,
+  }
+  console.log(typeof newFavbooks)
+  console.log(newFavbooks)
+
+  $.post("/api/myport/favbooks", newFavbooks, function(data){
+    console.log("post request complete");
+console.log(data)
+  })
+  window.location = "/myport"
 })
 
 function renderFavorites(){
