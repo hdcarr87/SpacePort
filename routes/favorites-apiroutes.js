@@ -10,9 +10,19 @@ module.exports = function(app) {
 
 //post create route for when a new favorite is added
     app.post("/api/myport", function(req, res) {
-        db.userFavorites.create(req.body).then(function(dbuserFavorites){
-            res.json(dbuserFavorites);
-        });
+       console.log(typeof req.body)
+       console.log(typeof JSON.stringify(req.body))
+            console.log("myPort route on server")
+            console.log(req.body);
+            //array for favorite name
+            var keys = Object.keys(req.body);
+            console.log(keys);
+            var favName = keys[0];
+
+            console.log(favName);
+//  db.userFavorites.create(req.body).then(function(dbuserFavorites){
+            res.json("movie favorite from server");
+        // });
     });
 
 //post add movie favorite
