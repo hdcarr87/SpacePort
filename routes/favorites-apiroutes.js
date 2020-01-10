@@ -2,27 +2,37 @@ var db = require("../models");
 
 module.exports = function(app) {
 //route to get userID currently in use
-    // app.post("/api/userID", function(req, res) {
-    //     db.userFavorites.create(req.body).then(function(dbuserFavorites){
-    //         res.json(dbuserFavorites);
-    //     });
-    // });    
+    app.post("/api/userID", function(req, res) {
+        db.userInfo.create(req.body).then(function(dbuserFavorites){
+            res.json(dbuserFavorites);
+        });
+    });    
 
-//post create route for when a new favorite movie is added
-    app.post("/api/myport/movie", function(req, res) {
-       console.log(typeof req.body)
-       console.log(typeof JSON.stringify(req.body))
+//post create route for when a new favorite is added
+    app.post("/api/myport", function(req, res) {
+    //    console.log(typeof req.body)
+    //    console.log(typeof JSON.stringify(req.body))   
             console.log("myPort route on server")
             console.log(req.body);
             //array for favorite name
-            var keys = Object.keys(req.body);
-            console.log(keys);
-            var favName = keys[0];
 
-            console.log(favName);
-  db.userFavorites.create(req.body).then(function(dbuserFavorites){
-            res.json(dbuserFavorites);
-         });
+//get route for getting favorites for the user
+app.get("/api/myport/favorites/:id", function(req, res){
+    console.log("favorites get request")
+    db.userFavorites.findAll({
+        where: {
+            userID: req.params.id
+        }
+    }).then(function(favorites){
+        res.json(favorites)
+        console.log(favorites)
+    })
+})
+          
+ db.userFavorites.create(req.body).then(function(dbuserFavorites){
+            res.json("movie favorite from server");
+   res.json(dbuserFavorites);
+        });
     });
 
 
@@ -31,7 +41,6 @@ app.post("/api/favorites/:id", function (req, res) {
         res.json(dbuserFavorites)
     });
 });
-
 
 //delete route for when a favorite is removed
     app.delete("/api/favorites/:id", function(req, res) {
