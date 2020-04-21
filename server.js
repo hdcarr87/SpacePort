@@ -2,6 +2,7 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var path = require("path");
+var compression = require('compression');
 
 var db = require("./models");
 
@@ -19,9 +20,9 @@ const isPreflight = (req) => {
 ///////////////////
 
 // Middleware
+app.use(compression());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
 app.use(express.static("public"));
 
 // app.use(function(req, res, next) {
